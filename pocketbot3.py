@@ -461,6 +461,9 @@ def randomL(bot,update):
     data = json.loads(x)
     dataValues = data.values()
     articlesList = dataValues[2]
+    print "++++++++++++++++++++++++"
+    print articlesList
+    print "++++++++++++++++++++++++"
     randomInt =random.randint(0,len(articlesList)-1)
     update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
     fileObj = open("json.txt","w")
