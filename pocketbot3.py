@@ -464,7 +464,10 @@ def randomL(bot,update):
     print "++++++++++++++++++++++++"
     print articlesList
     print "++++++++++++++++++++++++"
+    print type(articlesList.values())
+
     randomInt =random.randint(0,len(articlesList)-1)
+    print type (articlesList.values()[randInt])
     update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
     fileObj = open("json.txt","w")
     fileObj.write(x)
