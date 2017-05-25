@@ -457,21 +457,22 @@ def randomL(bot,update):
         update.message.reply_text("Please type /start and then resend command")
     pocket_instance = pocket.Pocket(consumer_key, userfind.access_token)
     r = Pocket.get(pocket_instance,state="unread")
-    x =json.dumps(r[0])
-    data = json.loads(x)
-    dataValues = data.values()
-    articlesList = dataValues[3]
-    print type (articlesList)
-    print "++++++++++++++++++++++++"
-    print articlesList
-    print "++++++++++++++++++++++++"
-    print type(articlesList.values())
-
-    randomInt =random.randint(0,len(articlesList)-1)
-    print type (articlesList.values()[randInt])
-    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
-    fileObj = open("json.txt","w")
-    fileObj.write(x)
+    print r
+##    x =json.dumps(r[0])
+##    data = json.loads(x)
+##    dataValues = data.values()
+##    articlesList = dataValues[3]
+##    print type (articlesList)
+##    print "++++++++++++++++++++++++"
+##    print articlesList
+##    print "++++++++++++++++++++++++"
+##    print type(articlesList.values())
+##
+##    randomInt =random.randint(0,len(articlesList)-1)
+##    print type (articlesList.values()[randInt])
+##    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
+##    fileObj = open("json.txt","w")
+##    fileObj.write(x)
     
 
 def checkText(bot,update):
