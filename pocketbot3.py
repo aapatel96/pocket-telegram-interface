@@ -455,21 +455,14 @@ def randomL(bot,update):
     userfind = find_user(users,update.message.from_user.id)
     if userfind == None:
         update.message.reply_text("Please type /start and then resend command")
-    pocket_instance = userfind.pocketInstance
+    pocket_instance = pocket.Pocket(consumer_key, userfind.access_token)
     r = Pocket.get(pocket_instance,state="unread")
     x =json.dumps(r[0])
-    print x
     data = json.loads(x)
     dataValues = data.values()
-##    print dataValues[3]
-    print type(dataValues)
-    articlesList = dataValues[3].values()
-    print type(articlesList)
-    print 5
-    randomInt =random.randint(0,len(articlesList)-1)
-    update.message.reply_text(articlesList[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
-    fileObj = open("json.txt","w")
-    fileObj.write(x)
+    articlesList = dataValues[4]
+    randomInt =random.randint(0,len(dataValues[4])-1)
+    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
 
 def checkText(bot,update):
     userfind = find_user(users,update.message.from_user.id)
