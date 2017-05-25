@@ -1,0 +1,1 @@
+web: python pocketbot3.py runserver 0.0.0.0:5000
