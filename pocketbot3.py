@@ -461,9 +461,9 @@ def randomL(bot,update):
     print x
     data = json.loads(x)
     dataValues = data.values()
-    ##print dataValues[4]
+##    print dataValues[3]
     print type(dataValues)
-    articlesList = dataValues[4].values()
+    articlesList = dataValues[3].values()
     print type(articlesList)
     print 5
     randomInt =random.randint(0,len(articlesList)-1)
