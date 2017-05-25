@@ -629,10 +629,10 @@ def main():
     dp.add_error_handler(error)
 
     # Start the Bot
-##    updater.start_webhook(listen="0.0.0.0",
-##                      port=PORT,
-##                      url_path=TOKEN)
-##    updater.bot.set_webhook("https://smaugbot.herokuapp.com/" + TOKEN)
+    updater.start_webhook(listen="0.0.0.0",
+                      port=PORT,
+                      url_path=TOKEN)
+    updater.bot.set_webhook("https://warm-oasis-63405.herokuapp.com/" + TOKEN)
     updater.start_polling()
     updater.idle()
 
