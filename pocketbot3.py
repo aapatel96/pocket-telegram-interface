@@ -633,7 +633,7 @@ def main():
                       port=PORT,
                       url_path=TOKEN)
     updater.bot.set_webhook("https://warm-oasis-63405.herokuapp.com/" + TOKEN)
-    updater.start_polling()
+##    updater.start_polling()
     updater.idle()
 
 if __name__ == '__main__':
