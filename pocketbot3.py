@@ -245,19 +245,15 @@ def listf(bot,update):
     userfind = find_user(users,update.message.from_user.id)
     if userfind == None:
         update.message.reply_text("Please type /start and then resend command")
+
     pocket_instance = userfind.pocketInstance
-    r = Pocket.get(pocket_instance, state ="all",sort="newest")
+    r = Pocket.get(pocket_instance,state="unread")
     x =json.dumps(r[0])
-    #print type(x)
     data = json.loads(x)
-    #print type(data)
-    dataValues = data.values()
-    #print len(dataValues[4])
-    articlesList = dataValues[4]
-    ##print(articlesList.values())
+    articlesList = data['list'].values()
     
     list2add = listStatus()
-    list2add.list = articlesList.values()
+    list2add.list = articlesList
     #print list2add.list[0].values()[11]
     #print list2add.list[0].values()[17]
     list2add.currentIndex = 0
@@ -455,25 +451,12 @@ def randomL(bot,update):
     userfind = find_user(users,update.message.from_user.id)
     if userfind == None:
         update.message.reply_text("Please type /start and then resend command")
-    pocket_instance = pocket.Pocket(consumer_key, userfind.access_token)
+    pocket_instance = userfind.pocketInstance
     r = Pocket.get(pocket_instance,state="unread")
-##    print r
     x =json.dumps(r[0])
     data = json.loads(x)
-##    print data
     articlesList = data['list'].values() ##dataValues
-##    print articlesList
-##    articlesList = dataValues[3]
-##    print type (articlesList)
-##    print "++++++++++++++++++++++++"
-##    print articlesList
-##    print "++++++++++++++++++++++++"
-##    print type(articlesList.values())
-##
     randomInt =random.randint(0,len(articlesList)-1)
-##    print randomInt
-##    print type (articlesList.values()[randInt])
-##    print articlesList[randomInt]
     update.message.reply_text(articlesList[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
 ##    fileObj = open("json.txt","w")
 ##    fileObj.write(x)
