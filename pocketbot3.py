@@ -231,12 +231,12 @@ def stringEight(userfind):
 ##        print userfind.currentList.list[i].values()[11]
 ##        print "============"
         if len(userfind.currentList.list[i].values()) == 20:
-            title = userfind.currentList.list[i].values()[17].encode('utf-8').strip()
-            url = userfind.currentList.list[i].values()[11].encode('utf-8').strip()           
+            title = userfind.currentList.list[i][17].encode('utf-8').strip()
+            url = userfind.currentList.list[i][11].encode('utf-8').strip()           
             string = string +title+"\n"+url+"\n"+"\n"
         if len(userfind.currentList.list[i].values()) == 19:
-            title = userfind.currentList.list[i].values()[16].encode('utf-8').strip()
-            url = userfind.currentList.list[i].values()[10].encode('utf-8').strip()           
+            title = userfind.currentList.list[i][16].encode('utf-8').strip()
+            url = userfind.currentList.list[i][10].encode('utf-8').strip()           
             string = string +title+"\n"+url+"\n"+"\n"
     if len(string) == 0:
         return None
