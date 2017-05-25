@@ -459,7 +459,8 @@ def randomL(bot,update):
     r = Pocket.get(pocket_instance,state="unread")
 ##    print r
     x =json.dumps(r[0])
-    print x
+    print type(x)
+    
 ##    data = json.loads(x)
 ##    dataValues = data.values()
 ##    articlesList = dataValues[3]
