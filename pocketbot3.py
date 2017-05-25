@@ -461,8 +461,8 @@ def randomL(bot,update):
     x =json.dumps(r[0])
     data = json.loads(x)
     print type(data)
-    dataValues = data.values()
-    print dataValues[0].values()[0]
+    articlesList = data.values() ##dataValues
+
 ##    articlesList = dataValues[3]
 ##    print type (articlesList)
 ##    print "++++++++++++++++++++++++"
@@ -470,9 +470,9 @@ def randomL(bot,update):
 ##    print "++++++++++++++++++++++++"
 ##    print type(articlesList.values())
 ##
-##    randomInt =random.randint(0,len(articlesList)-1)
+    randomInt =random.randint(0,len(articlesList)-1)
 ##    print type (articlesList.values()[randInt])
-##    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
+    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
 ##    fileObj = open("json.txt","w")
 ##    fileObj.write(x)
     
