@@ -457,8 +457,9 @@ def randomL(bot,update):
         update.message.reply_text("Please type /start and then resend command")
     pocket_instance = pocket.Pocket(consumer_key, userfind.access_token)
     r = Pocket.get(pocket_instance,state="unread")
-    print r
-##    x =json.dumps(r[0])
+##    print r
+    x =json.dumps(r[0])
+    print x
 ##    data = json.loads(x)
 ##    dataValues = data.values()
 ##    articlesList = dataValues[3]
