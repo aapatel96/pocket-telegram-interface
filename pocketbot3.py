@@ -462,7 +462,7 @@ def randomL(bot,update):
     data = json.loads(x)
     print type(data)
     articlesList = data.values() ##dataValues
-
+    print articlesList[0]
 ##    articlesList = dataValues[3]
 ##    print type (articlesList)
 ##    print "++++++++++++++++++++++++"
