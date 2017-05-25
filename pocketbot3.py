@@ -460,9 +460,11 @@ def randomL(bot,update):
     x =json.dumps(r[0])
     data = json.loads(x)
     dataValues = data.values()
-    articlesList = dataValues[4]
-    randomInt =random.randint(0,len(dataValues[4])-1)
-    update.message.reply_text(articlesList.values()[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
+    articlesList = dataValues[4].values()
+    print type(articlesList)
+    print 5
+    randomInt =random.randint(0,len(articlesList)-1)
+    update.message.reply_text(articlesList[randomInt]["resolved_url"],reply_markup=random_listf_keyboard)
     fileObj = open("json.txt","w")
     fileObj.write(x)
 
@@ -629,11 +631,11 @@ def main():
     dp.add_error_handler(error)
 
     # Start the Bot
-##    updater.start_webhook(listen="0.0.0.0",
-##                      port=PORT,
-##                      url_path=TOKEN)
-##    updater.bot.set_webhook("https://warm-oasis-63405.herokuapp.com/" + TOKEN)
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                      port=PORT,
+                      url_path=TOKEN)
+    updater.bot.set_webhook("https://warm-oasis-63405.herokuapp.com/" + TOKEN)
+##    updater.start_polling()
     updater.idle()
 
 if __name__ == '__main__':
