@@ -29,38 +29,10 @@ print request_token
 done_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("done")]], resize_keyboard=True, one_time_keyboard=True)
 random_listf_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("random")],[telegram.KeyboardButton("list")]], resize_keyboard=True)
 pass_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("pass")]], resize_keyboard=True)
-inlineNextKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')],[InlineKeyboardButton("filter", callback_data='filter')]])
-inlineNextKeyboard2 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous'),InlineKeyboardButton("next", callback_data='next')],[InlineKeyboardButton("filter", callback_data='filter')]])
-inlineNextKeyboard3 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous')],[InlineKeyboardButton("filter", callback_data='filter')]])
+inlineNextKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')]])
+inlineNextKeyboard2 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous'),InlineKeyboardButton("next", callback_data='next')]])
+inlineNextKeyboard3 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous')]])
 
-filtersKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')],
-                                        [InlineKeyboardButton("state", callback_data='state'),InlineKeyboardButton("content type", callback_data='content type'),InlineKeyboardButton("sort by", callback_data='sort')],
-                                        [InlineKeyboardButton("reset", callback_data='reset')],[InlineKeyboardButton("hide filters", callback_data='hide')]])
-
-filtersKeyboard2 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next'),InlineKeyboardButton("previous", callback_data='previous')],
-                                        [InlineKeyboardButton("state", callback_data='state'),InlineKeyboardButton("content type", callback_data='content type'),InlineKeyboardButton("sort by", callback_data='sort')],
-                                        [InlineKeyboardButton("reset", callback_data='reset')],[InlineKeyboardButton("hide filters", callback_data='hide')]])
-
-
-filtersKeyboard3 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous')],
-                                        [InlineKeyboardButton("state", callback_data='state'),InlineKeyboardButton("content type", callback_data='content type'),InlineKeyboardButton("sort by", callback_data='sort')],
-                                        [InlineKeyboardButton("reset", callback_data='reset')],[InlineKeyboardButton("hide filters", callback_data='hide')]])
-
-stateKeyboard = InlineKeyboardMarkup([[InlineKeyboardButton("unread", callback_data='unread')],
-                                      [InlineKeyboardButton("archive", callback_data='archive')],
-                                      [InlineKeyboardButton("all", callback_data='all')],
-                                      [InlineKeyboardButton("cancel", callback_data='cancel')]])
-
-contentKeyboard = InlineKeyboardMarkup([[InlineKeyboardButton("image", callback_data='image')],
-                                        [InlineKeyboardButton("video", callback_data='video')],
-                                        [InlineKeyboardButton("article", callback_data='article')],
-                                        [InlineKeyboardButton("cancel", callback_data='cancel')]])
-
-sortKeyboard = InlineKeyboardMarkup([[InlineKeyboardButton("newest first", callback_data='newest')],
-                                    [InlineKeyboardButton("oldest first", callback_data='oldest')],
-                                    [InlineKeyboardButton("alphabetical", callback_data='title')],
-                                    [InlineKeyboardButton("by url", callback_data='site')],
-                                    [InlineKeyboardButton("cancel", callback_data='cancel')]])
 
 
 
@@ -167,37 +139,7 @@ def help(bot, update):
 def pressDone(bot,update):
     update.message.reply_text("Please press done",reply_markup=done_keyboard)
     return CONFIRM
-def updateList(userfind):
-    pocket_instance = userfind.pocketInstance
-    print userfind.filters["state"]
-    print userfind.filters["contentType"]
-    print userfind.filters["sort"]
-    print type(userfind.filters["state"])
-    print type(userfind.filters["contentType"])
-    print type(userfind.filters["sort"])
-    r = userfind.currentList.list = Pocket.get(userfind.pocketInstance,state=userfind.filters["state"],contentType=userfind.filters["contentType"],sort=userfind.filters["sort"])
-    x =json.dumps(r[0])
-    print type(x)
-    #print type(x)
-    data = json.loads(x)
-    print data
-    #print type(data)
-    dataValues = data.values()
-    #print len(dataValues[4])
-    articlesList = dataValues[4]
-    ##print(articlesList.values())
-    
-    list2add = listStatus()
-    try:
-        list2add.list = articlesList.values()
-        #print list2add.list[0].values()[11]
-        #print list2add.list[0].values()[17]
-        list2add.currentIndex = 0
 
-        userfind.currentList= list2add
-        return
-    except:
-        return -1
 
 def stringEight(userfind):
     string = ""
@@ -271,83 +213,18 @@ def menuButtons(bot,update):
     if str(queryData) == "next":
         userfind.currentList.currentIndex = userfind.currentList.currentIndex+8
         
-    if str(queryData) == "filter":
-        userfind.filterstatus = True
-    if str(queryData) == "hide":
-        userfind.filterstatus = False
-    if str(queryData) == "all":
-        userfind.filters["state"]= "all"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "unread":
-        userfind.filters["state"]= "unread"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "archive":
-        userfind.filters["state"]= "archive"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "image":
-        userfind.filters["contentType"]= "image"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "video":
-        userfind.filters["contentType"]= "video"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "article":
-        userfind.filters["contentType"]= "article"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "newest":
-        userfind.filters["sort"]= "newest"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "oldest":
-        userfind.filters["sort"]= "oldest"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "title":
-        userfind.filters["sort"]= "title"
-        x = updateList(userfind)
-        print userfind.filters
-    if str(queryData) == "site":
-        userfind.filters["sort"]= "site"
-        x = updateList(userfind)
-        print userfind.filters
-
             
     if userfind.currentList.currentIndex+8 >len(userfind.currentList.list):
-        if userfind.filterstatus == True:
-            keyboard = filtersKeyboard3
-        else:
-            keyboard = inlineNextKeyboard3
+        keyboard = inlineNextKeyboard3
     elif userfind.currentList.currentIndex-8 <0:
-        if userfind.filterstatus == True:
-            keyboard = filtersKeyboard1
-        else:
-            keyboard = inlineNextKeyboard1
+        keyboard = inlineNextKeyboard1
     else:
-        if userfind.filterstatus == True:
-            keyboard = filtersKeyboard2
-        else:
-            keyboard = inlineNextKeyboard2
+        keyboard = inlineNextKeyboard2
             
-    if str(queryData) == "state":
-        keyboard = stateKeyboard
-        print keyboard
-    if str(queryData) == "content type":
-        keyboard = contentKeyboard
-        print keyboard
-    if str(queryData) == "sort":
-        keyboard = sortKeyboard
-        print keyboard
+
         
-##    x = "<b>"+userfind.currentList[userfind.currentIndex].values()[1].upper()+"</b>"+"\n\n"+userfind.currentList[userfind.currentIndex].values()[0]+"\n\n"+userfind.currentList[userfind.currentIndex].values()[2]
-    if x == -1:
-        string = "No results with current filters"
-    else:
-        string = stringEight(userfind)
+
+    string = stringEight(userfind)
     bot.edit_message_text(text=string,
                       chat_id=queryObj.message.chat_id,
                       message_id=mid, disable_web_page_preview=True)
