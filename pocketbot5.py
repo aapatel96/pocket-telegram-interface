@@ -342,6 +342,7 @@ def menuButtons(bot,update):
 def randomL(bot,update):
     try:
         user = users.find_one({"user_id":update.message.from_user.id})
+        print user
         ##print userDB
     except:
         update.message.reply_text("You are not registered. Press /start and then resend command2")
