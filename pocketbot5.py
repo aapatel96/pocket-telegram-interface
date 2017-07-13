@@ -216,7 +216,7 @@ def start(bot, update):
             "access_token":None,
             "currentTask":None,
             "currentURL":None,
-            "auth_url":None,
+            "auth_url":auth_url,
             "currentList":None,
             "filterstatus":None,
             "list_ids":[]
@@ -235,13 +235,13 @@ def confirm(bot,update):
     try:
         user_credentials = Pocket.get_credentials(consumer_key=consumer_key, code=request_token)
         access_token =user_credentials['access_token']
-        pocketInstance = pocket.Pocket(consumer_key, userfind.access_token)
+        pocketInstance = pocket.Pocket(consumer_key, access_token)
         users.update({"user_id":update.message.chat.id},{"$set":{"access_token":access_token,"user_credentials":user_credentials}})
         update.message.reply_text("You are all set! Try pressing random below to get a random article or list to skim your libray",reply_markup=random_listf_keyboard)
         del pocketInstance
         return ConversationHandler.END
     except:
-        update.message.reply_text("Please authorise this bot first:"+"\n"+"\n"+userfind.auth_url,reply_markup=done_keyboard)
+        update.message.reply_text("Please authorise this bot first:"+"\n"+"\n"+user['auth_url'],reply_markup=done_keyboard)
         return CONFIRM
     
 def help(bot, update):
