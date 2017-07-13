@@ -12,6 +12,8 @@ import time
 import urllib2
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import pymongo
+from random import randint
+
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
