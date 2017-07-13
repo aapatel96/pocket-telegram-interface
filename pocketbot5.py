@@ -272,7 +272,7 @@ def listf(bot,update):
     articlesList = data['list'].values()
 
     uid = randint(10000,99999)
-    while uid in user['uids']:
+    while uid in user['list_ids']:
         uid = randint(10000,99999)
 
     list2add = {
