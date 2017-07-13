@@ -319,10 +319,10 @@ def menuButtons(bot,update):
         return
 
     if str(queryData) == "previous":
-        lists.update({'user_id':queryObj.message.chat.id,"list_id":intlistid},{"$inc":{"index":-8}})
+        lists.update({'user_id':queryObj.message.chat.id,"list_id":intlist_id},{"$inc":{"index":-8}})
         listfind = lists.find_one({'user_id':queryObj.message.chat.id,"list_id":intlist_id})
     if str(queryData) == "next":
-        lists.update({'user_id':queryObj.message.chat.id,"list_id":intlistid},{"$inc":{"index":+8}})
+        lists.update({'user_id':queryObj.message.chat.id,"list_id":intlist_id},{"$inc":{"index":+8}})
         listfind = lists.find_one({'user_id':queryObj.message.chat.id,"list_id":intlist_id})
         
     if listfind['currentIndex']+8 >len(listfind['list']):
