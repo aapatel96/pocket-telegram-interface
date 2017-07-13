@@ -25,8 +25,7 @@ client = pymongo.MongoClient(os.environ['MONGODB_URI'])
 db = client.get_default_database()
 
 users = db['users']
-collections = db['collections']
-archive = db['archive']
+lists = db['lists']
 
 consumer_key="67229-58499186bd836a77ac726d5f"
 redirect_uri="https://telegram.me/getpocket_bot"
