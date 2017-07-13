@@ -335,7 +335,7 @@ def menuButtons(bot,update):
     string = stringEight(listfind)
 
 
-    bot.edit_message_text(text="LIST"+str(listfind['id'])+'\n'+'\n'+string,
+    bot.edit_message_text(text="LIST"+str(listfind['list_id'])+'\n'+'\n'+string,
                       chat_id=queryObj.message.chat_id,
                       message_id=mid, disable_web_page_preview=True)
     bot.edit_message_reply_markup(chat_id =queryObj.message.chat_id,message_id=mid,reply_markup =keyboard,parse_mode='HTML')
