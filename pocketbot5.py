@@ -236,7 +236,8 @@ def confirm(bot,update):
         user_credentials = Pocket.get_credentials(consumer_key=consumer_key, code=request_token)
         access_token =user_credentials['access_token']
         pocketInstance = pocket.Pocket(consumer_key, access_token)
-        users.update({"user_id":update.message.chat.id},{"$set":{"access_token":access_token,"user_credentials":user_credentials}})
+        users.update({"user_id":update.message.chat.id},{"$set":{"access_token":access_token}})
+        users.update({"user_id":update.message.chat.id},{"$set":{"user_credentials":user_credentials}})
         update.message.reply_text("You are all set! Try pressing random below to get a random article or list to skim your libray",reply_markup=random_listf_keyboard)
         del pocketInstance
         return ConversationHandler.END
