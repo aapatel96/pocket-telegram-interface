@@ -37,9 +37,9 @@ print request_token
 done_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("done")]], resize_keyboard=True, one_time_keyboard=True)
 random_listf_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("random")],[telegram.KeyboardButton("list")]], resize_keyboard=True)
 pass_keyboard = telegram.replykeyboardmarkup.ReplyKeyboardMarkup([[telegram.KeyboardButton("pass")]], resize_keyboard=True)
-inlineNextKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')],[InlineKeyboardButton("filter", callback_data='filter')]])
-inlineNextKeyboard2 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous'),InlineKeyboardButton("next", callback_data='next')],[InlineKeyboardButton("filter", callback_data='filter')]])
-inlineNextKeyboard3 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous')],[InlineKeyboardButton("filter", callback_data='filter')]])
+inlineNextKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')]])
+inlineNextKeyboard2 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous'),InlineKeyboardButton("next", callback_data='next')]])
+inlineNextKeyboard3 = InlineKeyboardMarkup([[InlineKeyboardButton("previous", callback_data='previous')]])
 
 filtersKeyboard1 = InlineKeyboardMarkup([[InlineKeyboardButton("next", callback_data='next')],
                                         [InlineKeyboardButton("state", callback_data='state'),InlineKeyboardButton("content type", callback_data='content type'),InlineKeyboardButton("sort by", callback_data='sort')],
