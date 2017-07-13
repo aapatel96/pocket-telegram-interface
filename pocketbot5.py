@@ -325,9 +325,9 @@ def menuButtons(bot,update):
         lists.update({'user_id':queryObj.message.chat.id,"list_id":intlist_id},{"$inc":{"index":+8}})
         listfind = lists.find_one({'user_id':queryObj.message.chat.id,"list_id":intlist_id})
         
-    if listfind['currentIndex']+8 >len(listfind['list']):
+    if listfind['index']+8 >len(listfind['list']):
         keyboard = inlineNextKeyboard3
-    elif listfind['currentIndex']-8 <0:
+    elif listfind['index']-8 <0:
         keyboard = inlineNextKeyboard1
     else:
         keyboard = inlineNextKeyboard2
