@@ -184,11 +184,10 @@ def updateList(list):
 
 def stringEight(listr):
     try:
-        user = users.find_one({"user_id":update.message.from_user.id})
+        user = users.find_one({"user_id":listr['user_id']})
         ##print userDB
     except:
-        update.message.reply_text("You are not registered. Press /start and then resend command2")
-        return ConversationHandler.END
+        return None
     string = ""
     startindex = listr['index']
     endindex =startindex+8
