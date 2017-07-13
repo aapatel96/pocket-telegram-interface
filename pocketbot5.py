@@ -275,7 +275,7 @@ def listf(bot,update):
     list2add = {
                 "user_id":update.message.chat.id,
                 "list":articlesList,
-                "uid":uid,
+                "list_id":uid,
                 "index":0
             }
 
@@ -376,7 +376,7 @@ def checkText(bot,update):
         update.message.reply_text("not a valid url")
         return ConversationHandler.END
 
-    users.update({"user_id":update.message.chat.id},{"$set"{"currentURL":update.message.text}})
+    users.update({"user_id":update.message.chat.id},{"$set":{"currentURL":update.message.text}})
     update.message.reply_text("Are there any tags for this url?(split them with commas)")
     update.message.reply_text("You can hit pass if there are none",reply_markup=pass_keyboard)
     return ADD
