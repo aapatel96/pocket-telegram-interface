@@ -374,10 +374,11 @@ def checkText(bot,update):
         return ConversationHandler.END
     
     try:
-        urllib2.urlopen(str(update.message.text))
+        pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
+        pocket_instance.add(user['currentURL'],tags=tagsStr)
     except:
         update.message.reply_text("not a valid url")
-        return ConversationHandler.END
+    return ConversationHandler.END
 
     users.update({"user_id":update.message.chat.id},{"$set":{"currentURL":update.message.text}})
     update.message.reply_text("Are there any tags for this url?(split them with commas)")
