@@ -412,12 +412,16 @@ def parsetagsadd(bot,update):
     
     
 def passf(bot,update):
-    userfind = find_user(users,update.message.from_user.id)
-    if userfind == None:
-        update.message.reply_text("Please type /start and then resend command")
+    try:
+        user = users.find_one({"user_id":update.message.from_user.id})
+        ##print userDB
+    except:
+        update.message.reply_text("You are not registered. Press /start and then resend command2")
+        return ConversationHandler.END
     update.message.reply_text("All good! Your article was saved")
     pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
-    pocket_instance.add(userfind.currentURL)
+    pocket_instance.add(user['currentURL'])
+    users.update({"user_id":update.message.chat.id},{"$set":{"currentURL":None}})
     update.message.reply_text("All good! Your article was saved",reply_markup=random_listf_keyboard)
     return ConversationHandler.END
     
@@ -480,8 +484,7 @@ def main():
     states={
 
 
-        ADD: [RegexHandler('^(pass)$',
-                                passf),
+        ADD: [RegexHandler('^(pass)$',passf),
                     MessageHandler(Filters.text,
                                    parsetagsadd)
                   ],
