@@ -265,7 +265,7 @@ def listf(bot,update):
         return ConversationHandler.END
 
     pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
-    r = Pocket.get(pocket_instance,state="all")
+    r = Pocket.get(pocket_instance,state="all",sort='newest')
     x =json.dumps(r[0])
     data = json.loads(x)
     articlesList = data['list'].values()
