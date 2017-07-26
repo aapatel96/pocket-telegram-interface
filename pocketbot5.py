@@ -373,11 +373,12 @@ def checkText(bot,update):
         update.message.reply_text("You are not registered. Press /start and then resend command2")
         return ConversationHandler.END
     
-    try:
-        pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
-        pocket_instance.add(user['currentURL'],tags=tagsStr)
-    except:
-        update.message.reply_text("not a valid url")
+##    try:
+    pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
+    pocket_instance.add(user['currentURL'],tags=tagsStr)
+    update.message.reply_text('Article added!')
+##    except:
+##        update.message.reply_text("not a valid url")
     return ConversationHandler.END
 
     users.update({"user_id":update.message.chat.id},{"$set":{"currentURL":update.message.text}})
