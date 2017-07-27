@@ -272,8 +272,8 @@ def listf(bot,update):
 
     r = requests.post('https://getpocket.com/v3/get',data=params)
 
-    text = x.text
-    data = json.loads(y)
+    text = r.text
+    data = json.loads(text)
 
     articlesList = data['list'].values()
 
