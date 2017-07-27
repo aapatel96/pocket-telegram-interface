@@ -3,3 +3,4 @@ beautifulsoup4
 bs4
 pocket
 pymongo
+requests

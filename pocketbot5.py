@@ -13,6 +13,7 @@ import urllib2
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import pymongo
 from random import randint
+import requests
 
 
 
@@ -264,10 +265,16 @@ def listf(bot,update):
         update.message.reply_text("You are not registered. Press /start and then resend command2")
         return ConversationHandler.END
 
-    pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
-    r = Pocket.get(pocket_instance,state="all",sort='newest')
-    x =json.dumps(r[0])
-    data = json.loads(x)
+
+
+
+    params = {'consumer_key':consumer_key,'access_token':user['access_token'],'sort':'newest','state':'unread'}
+
+    r = requests.post('https://getpocket.com/v3/get',data=params)
+
+    text = x.text
+    data = json.loads(y)
+
     articlesList = data['list'].values()
 
     uid = randint(10000,99999)
