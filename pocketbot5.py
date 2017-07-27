@@ -375,7 +375,7 @@ def checkText(bot,update):
     
     ##try:
     pocket_instance = pocket.Pocket(consumer_key, user['access_token'])
-    pocket_instance.add(user['currentURL'])
+    pocket_instance.add(update.message.text)##user['currentURL']
     update.message.reply_text('Article added!')
     ##except:
         ##update.message.reply_text("not a valid url")
