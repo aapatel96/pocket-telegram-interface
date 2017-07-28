@@ -367,9 +367,9 @@ def randomL(bot,update):
     string = ''
     for i in range(5):
         randomInt =random.randint(0,len(articlesList)-1)
-        string = string + '<a href='+articlesList[randomInt]["resolved_url"]+'>'+articlesList[randomInt]["resolved_title"]+'</a>'+'\n'+'\n'
+        string = string + '['+articlesList[randomInt]["resolved_title"]+']'+'('+articlesList[randomInt]["resolved_url"]+')'+'\n'+'\n'
 
-    update.message.reply_text(string,reply_markup=random_listf_keyboard,disable_web_page_preview=True,parse_mode='HTML')
+    update.message.reply_text(string,reply_markup=random_listf_keyboard,disable_web_page_preview=True,parse_mode='Markdown')
 ##    fileObj = open("json.txt","w")
 ##    fileObj.write(x)
     
