@@ -14,6 +14,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import pymongo
 from random import randint
 import requests
+from operator import itemgetter
 
 
 
@@ -276,6 +277,7 @@ def listf(bot,update):
     data = json.loads(text)
 
     articlesList = data['list'].values()
+    articlesList.sort(key=itemgetter('sort_id'))
 
     uid = randint(10000,99999)
     while uid in user['list_ids']:
