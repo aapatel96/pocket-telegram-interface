@@ -198,8 +198,9 @@ def stringEight(listr):
 
     for i in xrange(startindex,endindex):
         title = listr['list'][i]["resolved_title"].encode('utf-8').strip()
-        url = listr['list'][i]["resolved_url"].encode('utf-8').strip()           
-        string = string +'<a href='+url+">"+title+"</a>"+"\n"+"\n"
+        url = listr['list'][i]["resolved_url"].encode('utf-8').strip()    
+        string = string + '['+title+']'+'('+url+')'+'\n'+'\n'
+       
 
     if len(string) == 0:
         return None
@@ -300,7 +301,7 @@ def listf(bot,update):
     if len(articlesList) <=8:
          update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True)
          return
-    update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True,reply_markup=inlineNextKeyboard1,parse_mode='HTML')
+    update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True,reply_markup=inlineNextKeyboard1,parse_mode='Markdown')
 
 
 def menuButtons(bot,update):
