@@ -347,8 +347,8 @@ def menuButtons(bot,update):
 
     bot.edit_message_text(text="LIST"+str(listfind['list_id'])+'\n'+'\n'+string,
                       chat_id=queryObj.message.chat_id,
-                      message_id=mid, disable_web_page_preview=True)
-    bot.edit_message_reply_markup(chat_id =queryObj.message.chat_id,message_id=mid,reply_markup =keyboard,parse_mode='Markdown')
+                      message_id=mid, disable_web_page_preview=True,parse_mode='Markdown')
+    bot.edit_message_reply_markup(chat_id =queryObj.message.chat_id,message_id=mid,reply_markup =keyboard)
 
 
 def randomL(bot,update):
