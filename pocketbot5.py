@@ -199,7 +199,7 @@ def stringEight(listr):
     for i in xrange(startindex,endindex):
         title = listr['list'][i]["resolved_title"].encode('utf-8').strip()
         url = listr['list'][i]["resolved_url"].encode('utf-8').strip()           
-        string = string +title+"\n"+url+"\n"+"\n"
+        string = string +'<a href='+url+">"+title+"</a>"+"\n"+"\n"
 
     if len(string) == 0:
         return None
@@ -300,7 +300,7 @@ def listf(bot,update):
     if len(articlesList) <=8:
          update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True)
          return
-    update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True,reply_markup=inlineNextKeyboard1)
+    update.message.reply_text("LIST"+str(uid)+'\n'+'\n'+string, disable_web_page_preview=True,reply_markup=inlineNextKeyboard1,parse_mode='HTML')
 
 
 def menuButtons(bot,update):
@@ -367,9 +367,9 @@ def randomL(bot,update):
     string = ''
     for i in range(5):
         randomInt =random.randint(0,len(articlesList)-1)
-        string = string + articlesList[randomInt]["resolved_title"]+'\n'+articlesList[randomInt]["resolved_url"]+'\n'+'\n'
+        string = string + '<a href='+articlesList[randomInt]["resolved_url"]+'>'+articlesList[randomInt]["resolved_title"]+'</a>'+'\n'+'\n'
 
-    update.message.reply_text(string,reply_markup=random_listf_keyboard,disable_web_page_preview=True)
+    update.message.reply_text(string,reply_markup=random_listf_keyboard,disable_web_page_preview=True,parse_mode='HTML')
 ##    fileObj = open("json.txt","w")
 ##    fileObj.write(x)
     
